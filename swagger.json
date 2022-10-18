@@ -1,0 +1,130 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api para praticar os principios SOLID",
+        "description": "This is a api of USERS",
+        "version": "1.0.0",
+        "contact": {
+            "email": "idevilson.developer@gmail.com"
+        }
+    },
+    "paths": {
+        "/users1": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Create a User",
+                "description": "Create a new User",
+                "requestBody": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type" : "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "name": "Idevilson Junior",
+                                "email": "idevilson.developer@gmail.com"
+                            }
+                        }
+                    }
+                }, 
+                "responses": {
+                    "201": {
+                        "description": "created"
+                    },
+                    "400": {
+                        "description": "Non authorized"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["User"],
+                "summary":"List a user",
+                "description": "List a user",
+                "requestBody": {
+                    "user_id": "string"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "item": {
+                                        "id": "string",
+                                        "admin": "boolean",
+                                        "created_at": "string",
+                                        "updated_at": "string",
+                                        "name": "string",
+                                        "email": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404" : {
+                        "response": "User not fount"
+                    }
+                }
+            },
+            "patch": {
+                "tags": ["User"],
+                "summary": "Turn user a admin",
+                "description": "Turn user a admin",
+                "header": {
+                    "id":"string"
+                },
+                "responses": {
+                    "201": {
+                        "id": "string",
+                        "admin": "boolean",
+                        "created_at": "string",
+                        "updated_at": "string",
+                        "name": "string",
+                        "email": "string"
+                    },
+                    "404": {
+                        "response": "User not fount"
+                    }
+                }
+            }
+        },
+        
+        "/users": {
+            "get": {
+                "tags": ["User"],
+                "summary": "List all users",
+                "description": "List all users",
+                "header": {
+                    "id": "string"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json" : {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "id": "string",
+                                        "admin": "boolean",
+                                        "created_at": "string",
+                                        "updated_at": "string",
+                                        "name": "string",
+                                        "email": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
